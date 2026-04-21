@@ -3,7 +3,7 @@
 ### Description.
 Legal AI Extractor is an automated tool designed to transform public deeds, property titles, and legal files - whether in physical or PDF format - into structured data (JSON/Excel).
 
-Developed to address inefficiencies in document managenment for law firms in Paraguay, this tool uses Artificial Intelligence to extract critical data points (Property Registration Number, Parcel ID, Parties involved, Prices) in seconds. This eliminates human transcription errors and saves hours of manual labor.
+Developed to address inefficiencies in document managenment for law firms in Paraguay. This tool uses Artificial Intelligence to extract critical data points (Property Registration Number, Parcel ID, Parties involved, Prices) in seconds. This eliminates human transcription errors and saves hours of manual labor.
 
 ### Key Features.
 - **Document Processing:** PDF ingestion using PyMuPDF.

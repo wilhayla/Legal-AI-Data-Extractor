@@ -9,13 +9,13 @@ Developed to address inefficiencies in document managenment for law firms in Par
 - **Document Processing:** PDF ingestion using PyMuPDF.
 -  **Intelligence extractor:** Uses the Gemini 1.5 Flash model for logical reasoning and extraction of specific data points under Paraguayan notarial law.
 -  **Structured Output**: Automatic generation of Excel files (.xls) and JSON objects.
--  **Intuitive Interface: Simple web interface built with Streamlit for users without technical backgrounds.
+-  **Intuitive Interface:** Simple web interface built with Streamlit for users without technical backgrounds.
 
 ### Tech Stack.
-- **Language: Python 3.13.5
-- **AI/LLM: Google Gemini API (Gemini 1.5 Flash)
+- **Language:** Python 3.13.5
+- **AI/LLM:** Google Gemini API (Gemini 1.5 Flash)
 - **PDF Processing:** PyMuPDF
 - **Interface:** Streamlit
-- **Data Handling: Pandas
+- **Data Handling:** Pandas
 
 

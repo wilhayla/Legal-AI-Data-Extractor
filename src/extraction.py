@@ -13,9 +13,12 @@ def extract_text_from_pdf(path_file, output_file):
         with pymupdf.open(pdf_file) as doc, open(output_file, "wb") as out:
             for page in doc:
                 raw_text = page.get_text()
-                text = page.get_text().encode("utf8")
-                out.write(text)
-                out.write(bytes((12,)))
+
+                if len(raw_text.strip()) > 10:
+                    text_bytes = raw_text.encode("utf8")
+                    out.write(text_bytes)
+                    out.write(bytes((12,)))
+                    
         print("Process successfully completed")
         return True
             

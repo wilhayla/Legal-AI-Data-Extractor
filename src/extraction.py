@@ -15,6 +15,8 @@ def extract_text_from_pdf(path_file, output_file):
                 text = page.get_text().encode("utf8")
                 out.write(text)
                 out.write(bytes((12,)))
+        print("Process successfully completed")
+        return True
             
     
     except FileNotFoundError:

@@ -18,7 +18,9 @@ def extract_text_from_pdf(path_file, output_file):
                     text_bytes = raw_text.encode("utf8")
                     out.write(text_bytes)
                     out.write(bytes((12,)))
-                    
+                else:
+                    print("Page skipped: content is too short.")
+
         print("Process successfully completed")
         return True
             

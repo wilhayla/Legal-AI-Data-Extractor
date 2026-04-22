@@ -209,4 +209,7 @@ __marimo__/
 # data folder
 data/
 
+# ignore title deed
+title_deed.pdf
+
 

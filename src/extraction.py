@@ -12,13 +12,13 @@ def extract_text_from_pdf(path_file, output_file):
     try:
         with pymupdf.open(pdf_file) as doc, open(output_file, "wb") as out:
             for page in doc:
+                raw_text = page.get_text()
                 text = page.get_text().encode("utf8")
                 out.write(text)
                 out.write(bytes((12,)))
         print("Process successfully completed")
         return True
             
-    
     except FileNotFoundError:
         print(f"Error: File not found in {path_file}")
         return False

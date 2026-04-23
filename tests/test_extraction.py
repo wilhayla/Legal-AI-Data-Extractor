@@ -36,6 +36,7 @@ def test_emty_or_short_pdf():
     result = extract_text_from_pdf(short_pdf, output)
 
     assert result is True
+    assert not output.exists()
 
 
 

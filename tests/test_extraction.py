@@ -25,6 +25,7 @@ def test_succeful_extraction():
 # Test 3: Testing an empty page or with short characters.
 def test_emty_or_short_pdf():
     short_pdf = Path("short_test.pdf")
+    output = Path("output_short.txt")
 
 
 

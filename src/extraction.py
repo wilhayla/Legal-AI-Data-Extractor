@@ -15,13 +15,9 @@ def extract_text_from_pdf(path_file, output_file):
             text_to_write = [] # and empty list to verify if there are content before to create the output file
             for page in doc:
                 raw_text = page.get_text()
-
                 if len(raw_text.strip()) > 10:
-                    text_bytes = raw_text.encode("utf8")
-                    out.write(text_bytes)
-                    out.write(bytes((12,)))
-                else:
-                    print("Page skipped: content is too short.")
+                    text_to_write.append(raw_text)
+                    found_content = True
 
         print("Process successfully completed")
         return True

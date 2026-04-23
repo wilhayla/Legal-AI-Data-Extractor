@@ -30,6 +30,7 @@ def test_emty_or_short_pdf():
     doc = pymupdf.open()
     page = doc.new_page()
     page.insert_text(pymupdf.Point(50,50)), "Hello"
+    doc.save(short_pdf)
 
 
 

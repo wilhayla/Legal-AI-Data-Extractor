@@ -10,7 +10,8 @@ def extract_text_from_pdf(path_file, output_file):
         return None
     
     try:
-        with pymupdf.open(pdf_file) as doc, open(output_file, "wb") as out:
+        found_content = False
+        with pymupdf.open(pdf_file) as doc:
             for page in doc:
                 raw_text = page.get_text()
 

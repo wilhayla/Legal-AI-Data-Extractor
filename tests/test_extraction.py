@@ -34,7 +34,9 @@ def test_emty_or_short_pdf():
     doc.close()
 
     result = extract_text_from_pdf(short_pdf, output)
-    
+
+    assert result is True
+
 
 
 

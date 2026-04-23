@@ -19,8 +19,16 @@ def extract_text_from_pdf(path_file, output_file):
                     text_to_write.append(raw_text)
                     found_content = True
 
-        print("Process successfully completed")
-        return True
+            if found_content:
+                with open(output_file, "wb") as out:
+                    for text in text_to_write:
+                        out.write(text.encode("utf8"))
+                        out.write(bytes((12,)))
+                print("Procees succefully completed")
+                return True
+            else:
+                print("Page skipped: content is too short.")
+                return True
             
     except FileNotFoundError:
         print(f"Error: File not found in {path_file}")

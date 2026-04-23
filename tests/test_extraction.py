@@ -23,9 +23,11 @@ def test_succeful_extraction():
         pytest.skip("Test file not found, skipping test.")
 
 # Test 3: Testing an empty page or with short characters.
-def test_emty_or_short_pdf():
+def test_empty_or_short_pdf():
     short_pdf = Path("short_test.pdf")
     output = Path("output_short.txt")
+
+    output.unlink(missing_ok=True)
 
     doc = pymupdf.open()
     page = doc.new_page()
@@ -40,6 +42,18 @@ def test_emty_or_short_pdf():
 
     short_pdf.unlink(missing_ok=True)
     output.unlink(missing_ok=True)
+
+def test_corrupt_file():
+    corrupt_pdf = Path("corrupt_test.pdf")
+    with open(corrupt_pdf, "wb") as f:
+        f.write(b"%PDF-1.4\n")
+        f.write(b"This is a corrupted file and does not have a real PDF structure.")
+
+    result = extract_text_from_pdf(corrupt_pdf, "output_corrupt.txt")
+
+    assert result is False
+
+    corrupt_pdf.unlink(missing_ok=True)
 
 
 

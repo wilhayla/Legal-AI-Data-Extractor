@@ -12,6 +12,7 @@ def extract_text_from_pdf(path_file, output_file):
     try:
         found_content = False
         with pymupdf.open(pdf_file) as doc:
+            text_to_write = [] # and empty list to verify if there are content before to create the output file
             for page in doc:
                 raw_text = page.get_text()
 

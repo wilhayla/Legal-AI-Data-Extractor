@@ -28,6 +28,7 @@ def test_emty_or_short_pdf():
     output = Path("output_short.txt")
 
     doc = pymupdf.open()
+    page = doc.new_page()
 
 
 

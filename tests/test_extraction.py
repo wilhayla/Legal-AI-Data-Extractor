@@ -38,6 +38,9 @@ def test_emty_or_short_pdf():
     assert result is True
     assert not output.exists()
 
+    short_pdf.unlink(missing_ok=True)
+    output.unlink(missing_ok=True)
+
 
 
 

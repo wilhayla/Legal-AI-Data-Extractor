@@ -8,3 +8,5 @@ def main():
     # Define the arguments the user must enter
     parser.add_argument("input_pdf", type=str, help="Input PDF file path")
     parser.add_argument("output_txt", type=str, help="Output TXT file path")
+
+    args = parser.parse_args() # code that validate data and save it as an object to args variable

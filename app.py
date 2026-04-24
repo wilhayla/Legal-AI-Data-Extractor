@@ -22,6 +22,7 @@ def main():
 
     if result is True:
         print(f"Succes! Extracted text saved to: {output_path}")
+    elif result is False:
         print("Error! Extraction fail. Please check the file.")
     else:
         print(f"Error! Input file not found {input_path}")

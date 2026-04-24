@@ -13,3 +13,11 @@ def main():
 
     input_path = Path(args.input_pdf)
     output_path = Path(args.output_txt)
+
+    print(f"---Start extraction---")
+    print(f"Input: (input_path)")
+    print(f"Output: (output_path)")
+
+    result = extract_text_from_pdf(input_path, output_path)
+
+    

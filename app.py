@@ -20,4 +20,13 @@ def main():
 
     result = extract_text_from_pdf(input_path, output_path)
 
-    
+    if result is True:
+        print(f"Succes! Extracted text saved to: {output_path}")
+        print("Error! Extraction fail. Please check the file.")
+    else:
+        print(f"Error! Input file not found {input_path}")
+
+if __name__ == "__main__":
+    main()
+
+

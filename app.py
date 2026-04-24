@@ -10,3 +10,6 @@ def main():
     parser.add_argument("output_txt", type=str, help="Output TXT file path")
 
     args = parser.parse_args() # code that validate data and save it as an object to args variable
+
+    input_path = Path(args.input_pdf)
+    output_path = Path(args.output_txt)

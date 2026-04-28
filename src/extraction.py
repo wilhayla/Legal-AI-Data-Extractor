@@ -21,6 +21,28 @@ def extract_native_text(path_file, output_file):
 
 def extract_ocr_text(pdf_file):
     print("PDF detected as scanned. Initializing OCR......")
+    
+    return None
+
+def extract_text_from_pdf(path_file, output_file):
+    pdf_path = Path(path_file)
+    print(f"Tryin native extraction to: {pdf_path.name}")
+
+    content = extract_native_text(pdf_path)
+
+    if not content:
+        print("Native text not found. Changing to OCR engine.")
+        content = extract_ocr_text(pdf_path)
+    
+    if content:
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(content)
+        print(f"Succefull peration: Text extracted and save in {output_file}")
+        return True
+    else:
+        print("Error: Failed to extract text using native or OCR methods")
+        return False
+
 
             
 

@@ -9,34 +9,17 @@ def extract_text_from_pdf(path_file, output_file):
         print(f"Error: The file {pdf_file} is not valid.")
         return None
     
-    try:
-        found_content = False
-        with pymupdf.open(pdf_file) as doc:
-            text_to_write = [] # and empty list to verify if there are content before to create the output file
-            for page in doc:
-                raw_text = page.get_text()
-                if len(raw_text.strip()) > 10:
-                    text_to_write.append(raw_text)
-                    found_content = True
+    text_list = [] 
+    with pymupdf.open(pdf_file) as doc:
+        for page in doc:
+            raw_text = page.get_text()
+            if len(raw_text.strip()) > 10:
+                text_list.append(raw_text)
 
-            if found_content:
-                with open(output_file, "wb") as out:
-                    for text in text_to_write:
-                        out.write(text.encode("utf8"))
-                        out.write(bytes((12,)))
-                print("Procees succefully completed")
-                return True
-            else:
-                print("Page skipped: content is too short.")
-                return True
+        if text_list:
+            return "\n".join(text_list)
             
-    except FileNotFoundError:
-        print(f"Error: File not found in {path_file}")
-        return False
-    
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        return False
+
             
 
 

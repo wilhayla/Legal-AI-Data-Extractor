@@ -18,6 +18,10 @@ def extract_text_from_pdf(path_file, output_file):
 
         if text_list:
             return "\n".join(text_list)
+
+def extract_ocr_text(pdf_file):
+    print("PDF detected as scanned. Initializing OCR......")
+    
             
 
             

@@ -1,5 +1,7 @@
 import pymupdf
 from pathlib import Path
+from pdf2image import convert_from_path
+import pytesseract
 
 def extract_native_text(path_file, output_file):
     pdf_file = Path(path_file)
@@ -20,9 +22,33 @@ def extract_native_text(path_file, output_file):
             return "\n".join(text_list)
 
 def extract_ocr_text(pdf_file):
-    print("PDF detected as scanned. Initializing OCR......")
+    """
+    Extract text from scanned PDFs using OCR.
+    Requires Poppler(pdf2image) to turn pdf pages into images,
+    and pytesseract (the OCR engine that "reads" images.)
+    """
+    try:
+        print("Starting OCR processing (this may take a few seconds).........")
+
+        # 1. Convert PDF pages to images
+        # 'dpi=300 is the standard for high-quality OCR
+        images = convert_from_path(pdf_file, dpi=300, poppler_path=r'E:\programas\poppler\poppler-25.12.0\Library\bin')
+
+        full_text = [] 
+
+        # Iterate through images and apply OCR
+        for i, image in enumerate(images):
+            print(f"Processing page {i+1}....")
+
+            # Using 'spa' for Spanish language support
+            text = pytesseract.image_to_string(image, lang='spa')
+            full_text.append(text)
+
+        return "\n".join(full_text)
     
-    return None
+    except Exception as e:
+        print(f"Error during OCR extraction: {e}")
+        return None
 
 def extract_text_from_pdf(path_file, output_file):
     pdf_path = Path(path_file)
@@ -37,7 +63,7 @@ def extract_text_from_pdf(path_file, output_file):
     if content:
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(content)
-        print(f"Succefull peration: Text extracted and save in {output_file}")
+        print(f"Succefull extraction: Text extracted and save in {output_file}")
         return True
     else:
         print("Error: Failed to extract text using native or OCR methods")

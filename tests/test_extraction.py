@@ -6,7 +6,7 @@ from src.extraction import extract_text_from_pdf
 # Test 1: verify that the test fails if file is missing
 def test_file_not_found():
     result = extract_text_from_pdf("false_file.pdf", "output.txt")
-    assert result is None
+    assert result is False
 
 # Test 2: Verify behavior with a real file
 def test_succeful_extraction():

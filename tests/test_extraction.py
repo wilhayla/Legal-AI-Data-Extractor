@@ -37,6 +37,8 @@ def test_empty_or_short_pdf():
 
     result = extract_text_from_pdf(short_pdf, output)
 
+    # In the hybrid model, even if it's short, it might return True 
+    # if it attempted OCR. Let's assert the result type.
     assert isinstance(result, bool)
 
     short_pdf.unlink(missing_ok=True)

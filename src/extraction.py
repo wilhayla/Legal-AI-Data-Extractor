@@ -51,22 +51,34 @@ def extract_ocr_text(pdf_file):
         return None
 
 def extract_text_from_pdf(path_file, output_file):
+    """
+    Orchestrator function that tries Native extraction first, 
+    then falls back to OCR if needed.
+    """
     pdf_path = Path(path_file)
-    print(f"Tryin native extraction to: {pdf_path.name}")
 
-    content = extract_native_text(pdf_path)
+    try:
+        # 1. Attempt Native Extraction
+        print(f"Tryin native extraction to: {pdf_path.name}")
+        content = extract_native_text(pdf_path)
 
-    if not content:
-        print("Native text not found. Changing to OCR engine.")
-        content = extract_ocr_text(pdf_path)
-    
-    if content:
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write(content)
-        print(f"Succefull extraction: Text extracted and save in {output_file}")
-        return True
-    else:
-        print("Error: Failed to extract text using native or OCR methods")
+        # 2. If not content, attemp OCR.
+        if not content:
+            print("Native text not found. Changing to OCR engine.")
+            content = extract_ocr_text(pdf_path)
+
+        # 3. Final Save
+        if content:
+            with open(output_file, "w", encoding="utf-8") as f:
+                f.write(content)
+            print(f"Success: Extracted text saved to {output_file}")
+            return True
+        else:
+            print("Error: Failed to extract text using native or OCR methods")
+            return False
+        
+    except Exception as e:
+        print(f"An unexpected error occurred while processing the PDF: {e}")
         return False
 
 

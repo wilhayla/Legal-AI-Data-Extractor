@@ -53,8 +53,24 @@ def test_corrupt_file():
     result = extract_text_from_pdf(corrupt_pdf, "output_corrupt.txt")
 
     assert result is False
-
     corrupt_pdf.unlink(missing_ok=True)
+
+def test_ocr_logic_trigger():
+    """
+    Specifically tests if the script can handle a scanned image.
+    Make sure you have a small scanned sample in your data folder.
+    """
+    scanned_input = Path("data/inputs/pdf_image_sample.pdf")
+    output = Path("data/outputs/ocr_test_result.txt")
+    
+    if scanned_input.exists():
+        result = extract_text_from_pdf(scanned_input, output)
+        assert result is True
+        assert output.exists()
+        assert output.stat().st_size > 0
+        output.unlink()
+    else:
+        pytest.skip("No scanned sample found for OCR test.")
 
 
 

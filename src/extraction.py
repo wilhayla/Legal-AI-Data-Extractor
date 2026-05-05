@@ -3,7 +3,7 @@ from pathlib import Path
 from pdf2image import convert_from_path
 import pytesseract
 
-def extract_native_text(path_file, output_file):
+def extract_native_text(path_file):
     pdf_file = Path(path_file)
     print(f"DEBUG: The file the program is trying to read is: {pdf_file}")
 
@@ -20,6 +20,7 @@ def extract_native_text(path_file, output_file):
 
         if text_list:
             return "\n".join(text_list)
+        return None
 
 def extract_ocr_text(pdf_file):
     """

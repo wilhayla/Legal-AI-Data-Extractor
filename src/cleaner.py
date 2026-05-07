@@ -5,7 +5,7 @@ def clean_extracted_text(text):
     It removes unwanted characters and formats the text for better readability.'''
 
     # Pattern to match unwanted characters (e.g., special characters, multiple spaces)
-    patterns_to_remove = [
+    noise_patterns = [
         r"Escaneado con CamScanner",
         r"COLEGIO DE ESCRIBANOS DEL PARAGUAY",
         r"REPUBLICA DEL PARAGUAY",
@@ -27,4 +27,7 @@ def clean_extracted_text(text):
         # Skip empty strings
         if not clean_line:
             continue
+
+        # Validate line against noise blacklist
+        is_metadata_noise = any(re.search(p, clean_line, re.IGNORECASE) for p in noise_patterns)
         

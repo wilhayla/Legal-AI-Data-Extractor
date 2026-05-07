@@ -23,4 +23,8 @@ def clean_extracted_text(text):
 
     for line in lines:
         clean_line = line.strip()  # Remove leading and trailing whitespace
+
+        # Skip empty strings
+        if not clean_line:
+            continue
         

@@ -33,4 +33,6 @@ def clean_extracted_text(text):
 
         if not is_metadata_noise:
             clean_content.append(clean_line)
-        
+
+    # join lines back into a single sanitized string
+    return '\n'.join(clean_content)

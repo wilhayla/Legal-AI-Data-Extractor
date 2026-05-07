@@ -30,4 +30,7 @@ def clean_extracted_text(text):
 
         # Validate line against noise blacklist
         is_metadata_noise = any(re.search(p, clean_line, re.IGNORECASE) for p in noise_patterns)
+
+        if not is_metadata_noise:
+            clean_content.append(clean_line)
         

@@ -23,3 +23,9 @@ def test_remove_page_numbers():
     assert "Page. 1" not in cleaned
     assert "Page. 2" not in cleaned
     assert "Property Data" in cleaned
+
+def test_keep_essential_data():
+    """Ensure that critical legal identifiers remain untouched."""
+    important_text = "Finca N° 12.580\nTax ID 14-351-15"
+    cleaned = clean_extracted_text(important_text)
+    assert cleaned == important_text

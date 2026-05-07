@@ -3,29 +3,29 @@ from src.cleaner import clean_extracted_text
 
 def test_remove_camscanner_watermark():
     """Verify that scanning watermarks are successfully filtered out."""
-    dirty_text = "Scanned with CamScanner\nLegal Content"
+    dirty_text = "Escaneado con CamScanner\nLegal Content"
     cleaned = clean_extracted_text(dirty_text)
-    assert "Scanned with CamScanner" not in cleaned
+    assert "Escaneado con CamScanner" not in cleaned
     assert "Legal Content" in cleaned
 
 def test_remove_protocol_headers():
     """Verify that administrative and institutional headers are removed."""
-    dirty_text = "REPUBLIC OF PARAGUAY\nCOLLEGE OF NOTARIES OF PARAGUAY\nFinca 123"
+    dirty_text = "REPUBLICA DEL PARAGUAY\nCOLEGIO DE ESCRIBANOS DEL PARAGUAY\nLegal Data"
     cleaned = clean_extracted_text(dirty_text)
-    assert "REPUBLIC" not in cleaned
-    assert "COLLEGE" not in cleaned
-    assert "Finca 123" in cleaned
+    assert "REPUBLICA" not in cleaned
+    assert "COLEGIO" not in cleaned
+    assert "Legal Data" in cleaned
 
 def test_remove_page_numbers():
     """Verify that automated page numbering is stripped from the text."""
-    dirty_text = "Page. 1\nProperty Data\nPage. 2"
+    dirty_text = "Hoja N° 001\nProperty Info\n Pag. 5"
     cleaned = clean_extracted_text(dirty_text)
-    assert "Page. 1" not in cleaned
-    assert "Page. 2" not in cleaned
-    assert "Property Data" in cleaned
+    assert "Hoja N°" not in cleaned
+    assert "Pag." not in cleaned
+    assert "Property Info" in cleaned
 
 def test_keep_essential_data():
     """Ensure that critical legal identifiers remain untouched."""
-    important_text = "Finca N° 12.580\nTax ID 14-351-15"
+    important_text = "Finca N° 12.580\nCuenta Corriente 14-351-15"
     cleaned = clean_extracted_text(important_text)
     assert cleaned == important_text

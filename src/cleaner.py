@@ -19,8 +19,7 @@ def clean_extracted_text(text):
 
     # Split into lines for granular processing
     lines = text.split('\n')
+    clean_content = []
 
-    for pattern in patterns_to_remove:
-        text = re.sub(pattern, "", text)
-
-    return text
+    for line in lines:
+        

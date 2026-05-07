@@ -11,7 +11,7 @@ def clean_extracted_text(text):
         r"REPUBLICA DEL PARAGUAY",
         r"Serie .*",           # Matches "Serie " followed by any characters
         r"Hoja N° .*",         # Matches "Hoja N° " followed by any characters
-        r" Pag\. \d+",         # Matches " Pag. " followed by one or more digits
+        r"Pag\. \d+",         # Matches " Pag. " followed by one or more digits
         r"={3,}",              # Matches sequences of three or more equal signs
         r"_{3,}",              # Matches sequences of three or more underscores
 

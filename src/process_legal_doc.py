@@ -15,4 +15,8 @@ def process_document(imput_path: Path, output_path: Path):
 
     # 3. Apply the cleaning logic.
     cleaned_text = clean_extracted_text(raw_text)
+
+    # 4. Save the cleaned text to the output file
+    output_path.write_text(cleaned_text, encoding='utf-8')
+    
     

@@ -21,4 +21,6 @@ def process_document(imput_path: Path, output_path: Path):
 
     print(f"Successfully processed cleaned text at: {output_path}.")
 
+if __name__ == "__main__":
+
     

@@ -6,14 +6,36 @@ def clean_extracted_text(text):
 
     # Pattern to match unwanted characters (e.g., special characters, multiple spaces)
     noise_patterns = [
-        r"Escaneado con CamScanner",
+
+        # 1. Institutional and Notary Specific Text
+        r"Colegio de Escribanos.*",
         r"COLEGIO DE ESCRIBANOS DEL PARAGUAY",
         r"REPUBLICA DEL PARAGUAY",
-        r"Serie .*",           # Matches "Serie " followed by any characters
-        r"Hoja N° .*",         # Matches "Hoja N° " followed by any characters
-        r"Pag\. \d+",         # Matches " Pag. " followed by one or more digits
-        r"={3,}",              # Matches sequences of three or more equal signs
-        r"_{3,}",              # Matches sequences of three or more underscores
+        r"Escaneado con CamScanner",
+        r"Registro N\? 78",
+
+        # 2. Contact and Location Information
+        r"Chile N\* 902.*",
+        r"Fax:.*Asunción.*",
+        r"Fax:.*",
+        r"Teléfs\.\s.*",
+
+        # 3. Document Identifiers (Series, Sheets, Pages)
+        r"Serie .*",
+        r"Hoja N° .*",
+        r"Pag\. \d+",
+
+        # 4. Structural Regex (Marginal Numbers and Border Noise)
+        r"^\d{1,2}\.?\s*$",           # Line numbers (e.g., 1., 2., 18., 24.)
+        r"^[A-Z]\s*$",                # Lone letters from border noise
+        r"^\s*A\s*$",                 # Variation of lone 'A' noise
+
+        # 5. Security Symbols and Filler Sequences
+        r"\.{3,}",                    # Long dot sequences (..........)
+        r"={2,}",                     # Sequences of two or more equals signs
+        r"={3,}",                     # Sequences of three or more equals signs
+        r"_{2,}",                     # Sequences of two or more underscores
+        r"_{3,}",                     # Sequences of three or more underscores
 
     ]
 

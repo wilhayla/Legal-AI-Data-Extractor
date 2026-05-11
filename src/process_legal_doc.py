@@ -18,5 +18,7 @@ def process_document(imput_path: Path, output_path: Path):
 
     # 4. Save the cleaned text to the output file
     output_path.write_text(cleaned_text, encoding='utf-8')
-    
+
+    print(f"Successfully processed cleaned text at: {output_path}.")
+
     

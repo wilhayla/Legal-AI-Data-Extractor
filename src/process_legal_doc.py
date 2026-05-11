@@ -12,4 +12,7 @@ def process_document(imput_path: Path, output_path: Path):
     
     # 2. Read the raw text from the input file
     raw_text = imput_path.read_text(encoding='utf-8')
+
+    # 3. Apply the cleaning logic.
+    cleaned_text = clean_extracted_text(raw_text)
     

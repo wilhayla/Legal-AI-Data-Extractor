@@ -22,5 +22,7 @@ def process_document(imput_path: Path, output_path: Path):
     print(f"Successfully processed cleaned text at: {output_path}.")
 
 if __name__ == "__main__":
+    # Define paths as Path objects
+    BASE_DIR = Path(__file__).parent.parent
 
     

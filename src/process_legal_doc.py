@@ -24,5 +24,7 @@ def process_document(imput_path: Path, output_path: Path):
 if __name__ == "__main__":
     # Define paths as Path objects
     BASE_DIR = Path(__file__).parent.parent
+    IMPUT_FILE = Path("output/title_result.txt")
+    OUTPUT_FILE = Path("output/cleaned_title_result.txt")
 
-    
+    process_document(IMPUT_FILE, OUTPUT_FILE)

@@ -10,3 +10,6 @@ def process_document(imput_path: Path, output_path: Path):
         print(f"Error: Target file not found {imput_path}.")
         return
     
+    # 2. Read the raw text from the input file
+    raw_text = imput_path.read_text(encoding='utf-8')
+    

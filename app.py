@@ -17,6 +17,12 @@ def main():
         print(f"Environment variables loaded from {env_path}")
     else:
         print("Environment file not found.")
+    # Retrieve API key from environment variables
+    api_key = os.getenv("gemini_api_key")
+
+    if not api_key:
+        print("Error: API key not found in environment variables.")
+        return
     parser = argparse.ArgumentParser(description="Legal-AI-Data_Extractor: Tool to extract text from legal PDF file")
 
     # Define the arguments the user must enter

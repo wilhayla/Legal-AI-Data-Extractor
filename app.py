@@ -2,6 +2,9 @@ import argparse
 from pathlib import Path
 from src.extraction import extract_text_from_pdf
 from src.cleaner import clean_extracted_text
+from src.ai_processor import sumarize_legal_text
+from dotenv import load_dotenv
+import os
 
 def main():
     parser = argparse.ArgumentParser(description="Legal-AI-Data_Extractor: Tool to extract text from legal PDF file")

@@ -28,6 +28,7 @@ def main():
     else:
         print(f"Error! Input file not found {input_path}")
 
+    cleaned_text = clean_extracted_text(raw_text)
 if __name__ == "__main__":
     main()
 

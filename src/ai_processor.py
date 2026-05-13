@@ -1,1 +1,1 @@
-import google.generativeai as genai
+from pathlib import Path

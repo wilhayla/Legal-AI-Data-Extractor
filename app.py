@@ -64,7 +64,9 @@ def main():
     
     print("Process complete: Extraction and Cleaning finalized!")
 
-    
+    # AI processing (Integration)
+    print("Sending cleaned text to AI for summarization...")
+    summary = sumarize_legal_text(cleaned_text, api_key)
 
 if __name__ == "__main__":
     main()

@@ -31,6 +31,7 @@ def main():
     cleaned_text = clean_extracted_text(raw_text)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(cleaned_text)
+    print("Process complete: Extraction and Cleaning finalized!")
 if __name__ == "__main__":
     main()
 

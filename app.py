@@ -68,6 +68,11 @@ def main():
     print("Sending cleaned text to AI for summarization...")
     summary = sumarize_legal_text(cleaned_text, api_key)
 
+    # Final save of the summary
+    output_path = BASE_DIR / "outputs" / "legal_summary.txt"
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(summary)
 if __name__ == "__main__":
     main()
 

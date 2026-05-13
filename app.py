@@ -73,6 +73,7 @@ def main():
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(summary)
+    print(f"Process complete! Summary saved to: {output_path}")
 if __name__ == "__main__":
     main()
 

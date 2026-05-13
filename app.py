@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 from src.extraction import extract_text_from_pdf
-from src.extraction import clean_extracted_text
+from src.cleaner import clean_extracted_text
 
 def main():
     parser = argparse.ArgumentParser(description="Legal-AI-Data_Extractor: Tool to extract text from legal PDF file")
@@ -24,14 +24,20 @@ def main():
     if raw_text is True:
         print(f"Succes! Extracted text saved to: {output_path}")
         print(f"DEBUG: The file is saving at: {output_path.absolute()}")
+        
+        # Read the extracted text from the file for cleaning
+        with open(output_path, "r", encoding="utf-8") as f:
+            extracted_content = f.read()
+        
+        # Cleaning (Integration)
+        # inmmediately after extraction, we pass that text through the cleaner utility
+        cleaned_text = clean_extracted_text(extracted_content)
     elif raw_text is False:
         print("Error! Extraction fail. Please check the file.")
+        return
     else:
         print(f"Error! Input file not found {input_path}")
-
-    # Cleaning (Integration)
-    # inmmediately after extraction, we pass that text through the cleaner utility
-    cleaned_text = clean_extracted_text(raw_text)
+        return
 
     # 3. Final save
     with open(output_path, "w", encoding="utf-8") as f:

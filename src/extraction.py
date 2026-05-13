@@ -3,6 +3,9 @@ from pathlib import Path
 from pdf2image import convert_from_path
 import pytesseract
 
+TESSERACT_CMD = r'C:\Users\william\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
+
 def extract_native_text(path_file):
     pdf_file = Path(path_file)
     print(f"DEBUG: The file the program is trying to read is: {pdf_file}")
@@ -29,11 +32,17 @@ def extract_ocr_text(pdf_file):
     and pytesseract (the OCR engine that "reads" images.)
     """
     try:
+        # Verify Tesseract path before processing
+        if not Path(TESSERACT_CMD).is_file():
+            print(f"Error: Tesseract executable not found at {TESSERACT_CMD}")
+            return None
+
+        print(f"Using Tesseract binary: {TESSERACT_CMD}")
         print("Starting OCR processing (this may take a few seconds).........")
 
         # 1. Convert PDF pages to images
         # 'dpi=300 is the standard for high-quality OCR
-        images = convert_from_path(pdf_file, dpi=300, poppler_path=r'E:\programas\poppler\poppler-25.12.0\Library\bin')
+        images = convert_from_path(pdf_file, dpi=300)
 
         full_text = [] 
 

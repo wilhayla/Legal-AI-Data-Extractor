@@ -29,6 +29,8 @@ def main():
         print(f"Error! Input file not found {input_path}")
 
     cleaned_text = clean_extracted_text(raw_text)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(cleaned_text)
 if __name__ == "__main__":
     main()
 

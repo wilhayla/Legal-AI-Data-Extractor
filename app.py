@@ -7,6 +7,16 @@ from dotenv import load_dotenv
 import os
 
 def main():
+    # Setup Paths and Load Environment Variables
+    BASE_DIR = Path(__file__).resolve().parent
+    env_path = BASE_DIR / '.env'
+
+    # Load environment variables from .env file
+    if env_path.is_file():
+        load_dotenv(dotenv_path=env_path)
+        print(f"Environment variables loaded from {env_path}")
+    else:
+        print("Environment file not found.")
     parser = argparse.ArgumentParser(description="Legal-AI-Data_Extractor: Tool to extract text from legal PDF file")
 
     # Define the arguments the user must enter
